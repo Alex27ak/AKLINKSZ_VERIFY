@@ -2,8 +2,8 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-// Serve static files from the public folder
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files from the root folder (instead of 'public')
+app.use(express.static(__dirname));
 
 // Route for the root path
 app.get('/', (req, res) => {
