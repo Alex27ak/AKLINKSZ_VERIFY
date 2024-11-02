@@ -96,11 +96,31 @@
             color: green;
             margin-top: 20px;
         }
+
+        #videoContainer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #youtubeVideo {
+            width: 80%;
+            max-width: 600px;
+            height: 315px;
+        }
+
+        @media (max-width: 600px) {
+            .modal-content {
+                width: 90%;
+            }
+            #youtubeVideo {
+                width: 100%;
+            }
+        }
     </style>
     <script type="text/javascript">
         let verifyCount = 0;
 
-        // URLs for verification buttons
+        // Initial URLs for verification buttons
         const urls = [
             'https://chikraighotoops.com/4/7536317',
             'https://chikraighotoops.com/4/8303260',
@@ -121,14 +141,16 @@
                 if (seconds <= 0) {
                     clearInterval(countdownInterval);
                     openModal();
+                    hideVideo();
                 }
             }, 1000);
 
             // Shuffle URLs and assign to buttons
             shuffle(urls);
-            document.getElementById('verifyBtn1').setAttribute('onclick', `openPopup('verifyBtn1', '${urls[0]}')`);
-            document.getElementById('verifyBtn2').setAttribute('onclick', `openPopup('verifyBtn2', '${urls[1]}')`);
-            document.getElementById('verifyBtn3').setAttribute('onclick', `openPopup('verifyBtn3', '${urls[2]}')`);
+            // Ensure only three buttons are assigned
+            for (let i = 0; i < 3; i++) {
+                document.getElementById(`verifyBtn${i + 1}`).setAttribute('onclick', `openPopup('verifyBtn${i + 1}', '${urls[i]}')`);
+            }
         });
 
         // Shuffle function to randomize URLs
@@ -146,12 +168,14 @@
 
             const popup = window.open(url, '_blank', 'width=800,height=600,scrollbars=yes');
 
+            // Check if popup is blocked
             if (!popup || popup.closed || typeof popup.closed === 'undefined') {
                 alert('Popup blocked! Please allow popups for this site.');
                 button.disabled = false;
                 return;
             }
 
+            // Close the popup after 3 seconds and mark button as verified
             setTimeout(function () {
                 if (popup) {
                     popup.close();
@@ -164,6 +188,7 @@
             const button = document.getElementById(verifyBtnId);
             button.classList.add('verified');
             button.innerText = button.innerText.replace('VERIFY LINK', 'VERIFIED');
+
             verifyCount++;
 
             if (verifyCount === 3) {
@@ -181,12 +206,46 @@
             document.getElementById('verificationMessage').style.display = 'none';
             document.getElementById('thankYouMessage').style.display = 'block';
         }
+
+        function redirectToVideo() {
+            // Get the 'video' parameter from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const videoId = urlParams.get('video');
+            
+            const baseUrl = "https://infoshotz.xyz/watch/";
+            let redirectUrl = null;
+
+            if (videoId) {
+                redirectUrl = baseUrl + videoId;
+            }
+
+            if (redirectUrl) {
+                window.location.href = redirectUrl;
+            } else {
+                document.getElementById("message").textContent = "No valid video ID provided. Please check the URL.";
+            }
+        }
+
+        function openModal() {
+            const modal = document.getElementById("myModal");
+            modal.style.display = "flex";
+        }
+
+        function hideVideo() {
+            const videoContainer = document.getElementById("videoContainer");
+            videoContainer.style.display = "none";
+        }
     </script>
 </head>
 <body>
     <br>
     <h2 style="color:red;">PLEASE WAIT FOR THE TIMER TO FINISH</h2>
     <h3>MODAL WILL OPEN IN <span id="countdown">15</span> SECONDS...</h3>
+
+    <!-- YouTube Video Embed Section -->
+    <div id="videoContainer">
+        <iframe id="youtubeVideo" src="https://www.youtube.com/embed/Icgd6qPQAZE?autoplay=1&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
