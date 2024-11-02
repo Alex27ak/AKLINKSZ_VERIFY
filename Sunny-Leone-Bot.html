@@ -120,14 +120,12 @@
     <script type="text/javascript">
         let verifyCount = 0;
 
-        // Array of 6 URLs
+        // Array of URLs (you can add more links here)
         const urls = [
-            'https://luglawhaulsano.net/4/7821485',
-            'https://luglawhaulsano.net/4/7697132',
-            'https://luglawhaulsano.net/4/7536317',
-            'https://luglawhaulsano.net/4/8303262',
-            'https://luglawhaulsano.net/4/8303261',
-            'https://luglawhaulsano.net/4/8303260'
+            'https://chikraighotoops.com/4/7536317',
+            'https://chikraighotoops.com/4/8303260',
+            'https://chikraighotoops.com/4/7821485',
+            // Add more links here if needed
         ];
 
         // Function to shuffle the array
@@ -141,9 +139,9 @@
 
         document.addEventListener("DOMContentLoaded", function () {
             // Shuffle URLs and assign to buttons
-            const shuffledUrls = shuffle(urls);
+            const shuffledUrls = shuffle(urls).slice(0, 3); // Get only the first 3 after shuffling
 
-            // Assign the first 3 URLs to the buttons
+            // Assign the URLs to the buttons
             document.getElementById('verifyBtn1').setAttribute('onclick', `openPopup('verifyBtn1', '${shuffledUrls[0]}')`);
             document.getElementById('verifyBtn2').setAttribute('onclick', `openPopup('verifyBtn2', '${shuffledUrls[1]}')`);
             document.getElementById('verifyBtn3').setAttribute('onclick', `openPopup('verifyBtn3', '${shuffledUrls[2]}')`);
@@ -192,8 +190,8 @@
             const button = document.getElementById(verifyBtnId);
             button.classList.add('verified');
 
-            // Change the text of the button to 'VERIFIED X'
-            button.innerText = button.innerText.replace('VERIFY LINK', 'VERIFIED');
+            // Change the text of the button to 'VERIFIED'
+            button.innerText = 'VERIFIED';
 
             verifyCount++;
 
